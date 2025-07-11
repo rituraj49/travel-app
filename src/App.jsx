@@ -1,7 +1,7 @@
-import { Button } from '@mui/material'
-import { useState } from 'react'
-import keycloak from './config/keycloakConfig'
-import { ReactKeycloakProvider } from '@react-keycloak/web'
+// import { Button } from '@mui/material'
+// import { StrictMode, useState } from 'react'
+// import keycloak from './config/keycloakConfig'
+// import { ReactKeycloakProvider } from '@react-keycloak/web'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import OffersPage from './pages/OffersPage'
@@ -14,24 +14,29 @@ function App() {
 
   return (
     <>
-    <ReactKeycloakProvider 
+    {/* <ReactKeycloakProvider 
       initOptions={{
         // onLoad: 'login-required',
         onLoad: 'check-sso',
+        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
         checkLoginIframe: false
       }}
       authClient={keycloak}
-    >
+    > */}
       <AppContextProvider>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/offers" element={<OffersPage />} />
-            <Route path="/booking" element={<SecuredRoute><BookingPage /></SecuredRoute>} />
+            <Route path="/booking" element={
+              // <SecuredRoute>
+                <BookingPage />
+                // {/* </SecuredRoute> */}
+              } />
           </Route>
         </Routes>
       </AppContextProvider>
-    </ReactKeycloakProvider>
+    {/* </ReactKeycloakProvider> */}
     </>
   )
 }

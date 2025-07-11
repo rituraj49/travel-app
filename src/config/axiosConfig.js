@@ -7,9 +7,9 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(config => {
-    if(keycloak.authenticated) {
-        config.headers.Authorization = `Bearer ${keycloak.token}`;
-    }
+    // if(keycloak.authenticated) {
+    //     config.headers.Authorization = `Bearer ${keycloak.token}`;
+    // }
 
     return config;
 });

@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 import { useKeycloak } from "@react-keycloak/web";
 
 function Navbar() {
-    const { keycloak } = useKeycloak();
+    // const { keycloak } = useKeycloak();
 
     const handleLoginLogout = () => {
-        if(keycloak.authenticated) {
-            keycloak.logout();
-        } else {
-            keycloak.login();
-        }
+        // if(keycloak.authenticated) {
+        //     keycloak.logout();
+        // } else {
+        //     keycloak.login();
+        // }
     }
     return (
       <AppBar position="static" color="primary">
@@ -38,7 +38,8 @@ function Navbar() {
               Home
             </Button>
             <Button color="inherit" component={Link} onClick={handleLoginLogout}>
-              {keycloak.authenticated ? "Logout" : "Login"}
+              {/* {keycloak.authenticated ? "Logout" : "Login"} */}
+              Login
             </Button>
             {/* <Button color="inherit" component={Link} to="/contact">
               Contact

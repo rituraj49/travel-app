@@ -3,10 +3,21 @@ import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import FlightLandIcon from "@mui/icons-material/FlightLand";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function FlightOfferCard({flight}) {
     const trip = flight.trips[0];
     // const flight = offer.flights[0];
+    const {selectedFlightOffer, setSelectedFlightOffer} = useAppContext();
+  
+    const navigate = useNavigate();
+   
+    const handleBookNow = (flight) => {
+        setSelectedFlightOffer(flight);
+        localStorage.setItem("selectedOffer", JSON.stringify(flight));
+        navigate("/booking");
+    }
     return (
         <div>
             <Card sx={{ maxWidth: 800, margin: "auto", mt: 3, boxShadow: 3 }}>
@@ -22,11 +33,20 @@ function FlightOfferCard({flight}) {
                     </Typography>
                     </Box>
 
-                    <Stack direction="row" spacing={2} mt={1} mb={2}>
-                        <Chip label={`${trip.stops} stop${trip.stops > 1 ? "s" : ""}`} />
-                        <Chip label={`Duration: ${trip.totalFlightDuration}`} />
-                        <Chip label={`Layovers: ${trip.totalLayoverDuration}`} />
-                    </Stack>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                        <Stack direction="row" spacing={2} mt={0.5} mb={1.5}>
+                            <Chip label={`${trip.stops} stop${trip.stops > 1 ? "s" : ""}`} />
+                            <Chip label={`Duration: ${trip.totalFlightDuration}`} />
+                            <Chip label={`Layovers: ${trip.totalLayoverDuration}`} />
+                        </Stack>
+                        <Chip 
+                            component={"button"}
+                            onClick={()=>handleBookNow(flight)} 
+                            label={`Book now`} 
+                            color="primary" sx={{mb: 1.5}} 
+                        />
+                        {/* <Button variant="contained" color="primary" sx={{borderRadius: 10}}>Book Now</Button> */}
+                    </Box>
 
                     <Divider />
 

@@ -14,7 +14,7 @@ export const AppContextProvider = ({children}) => {
             infants: 0
         });
     
-        const flightClasses = ["Economy", "Premium_Economy", "Business", "First"];
+    const flightClasses = ["Economy", "Premium_Economy", "Business", "First"];
 
     const [fromLoading, setFromLoading] = useState(false)
     const [fromInput, setFromInput] = useState("");
@@ -26,6 +26,32 @@ export const AppContextProvider = ({children}) => {
     
     const [flightOffers, setFlightOffers] = useState([]);
 
+    const [selectedFlightOffer, setSelectedFlightOffer] = useState("");
+
+    const [travelers, setTravelers] = useState(
+        Array(selectedFlightOffer && selectedFlightOffer.totalTravelers).fill({
+        firstName: "",
+        lastName: "",
+        gender: "",
+        email: "",
+        dateOfBirth: null,
+        phoneNumber: {
+            countryCallingCode: "",
+            number: ""
+        },
+        document: {
+            documentType: "",
+            birthPlace: "",
+            issuanceLocation: "",
+            issuanceDate: "",
+            number: "",
+            expiryDate: "",
+            issuanceCountry: "",
+            validityCountry: "",
+            nationality: "",
+            holder: true
+        }
+    }));
     return (
         <AppContext.Provider value={{
             searchParams, 
@@ -33,7 +59,9 @@ export const AppContextProvider = ({children}) => {
             flightClasses,
             fromLoading, setFromLoading, fromInput, setFromInput, fromSuggestions, setFromSuggestions, 
             toLoading, setToLoading, toInput, setToInput, toSuggestions, setToSuggestions, 
-            flightOffers, setFlightOffers
+            flightOffers, setFlightOffers, 
+            selectedFlightOffer, setSelectedFlightOffer,
+            travelers, setTravelers
         }}>
             {children}
         </AppContext.Provider>

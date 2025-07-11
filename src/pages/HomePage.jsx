@@ -137,7 +137,7 @@ function HomePage() {
             console.log(response);
             if(response.status === 200) {
                 setFlightOffers(response.data);
-                // localStorage.setItem("flightOffers", JSON.stringify(response.data));
+                localStorage.setItem("flightOffers", JSON.stringify(response.data));
                 setTimeout(() => {
                     navigate("/offers");
                 }, 500);
@@ -168,7 +168,6 @@ function HomePage() {
 
     return (
         <Box>
-            <Button onClick={()=>console.log(searchParams)}>formDta</Button>
             <Box component="form" onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={4}>
