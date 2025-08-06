@@ -52,6 +52,34 @@ export const AppContextProvider = ({children}) => {
             holder: true
         }
     }));
+
+    useEffect(() => {
+        if(selectedFlightOffer && selectedFlightOffer.totalTravelers) {
+            setTravelers(Array(selectedFlightOffer && selectedFlightOffer.totalTravelers).fill({
+                firstName: "",
+                lastName: "",
+                gender: "",
+                email: "",
+                dateOfBirth: null,
+                phoneNumber: {
+                    countryCallingCode: "",
+                    number: ""
+                },
+                document: {
+                    documentType: "",
+                    birthPlace: "",
+                    issuanceLocation: "",
+                    issuanceDate: "",
+                    number: "",
+                    expiryDate: "",
+                    issuanceCountry: "",
+                    validityCountry: "",
+                    nationality: "",
+                    holder: true
+                }
+            }));
+        }
+    }, [selectedFlightOffer]);
     return (
         <AppContext.Provider value={{
             searchParams, 

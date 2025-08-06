@@ -9,12 +9,13 @@ import BookingPage from './pages/BookingPage'
 import SecuredRoute from './components/SecuredRoute'
 import Layout from './components/Layout'
 import { AppContextProvider } from './context/AppContext'
+import keycloak from './config/keycloakConfig'
 
 function App() {
 
   return (
     <>
-    {/* <ReactKeycloakProvider 
+    <ReactKeycloakProvider 
       initOptions={{
         // onLoad: 'login-required',
         onLoad: 'check-sso',
@@ -22,7 +23,7 @@ function App() {
         checkLoginIframe: false
       }}
       authClient={keycloak}
-    > */}
+    >
       <AppContextProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -36,7 +37,7 @@ function App() {
           </Route>
         </Routes>
       </AppContextProvider>
-    {/* </ReactKeycloakProvider> */}
+    </ReactKeycloakProvider>
     </>
   )
 }

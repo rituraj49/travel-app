@@ -4,6 +4,7 @@ import keycloak from "./keycloakConfig";
 
 const axiosInstance = axios.create({
     baseURL: "http://localhost:8080"
+    // baseURL: "http://13.61.185.172:8080"
 });
 
 axiosInstance.interceptors.request.use(config => {
